@@ -1,7 +1,7 @@
 {
-    "name": "ChangeText",
+    "name": "ChangeElements",
     "version": "1.0",
-    "description": "Extension to change text on websites",
+    "description": "Extension to change different elements on websites",
     "permissions": [
         "activeTab",
         "declarativeContent",
