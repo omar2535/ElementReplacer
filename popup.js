@@ -1,6 +1,7 @@
 document.getElementById('saveButton').addEventListener('click', save);
 
 $(document).ready(function(){
+
     updateStored();
 });
 
@@ -28,7 +29,7 @@ function save(){
 }
 
 function updateStored(){
-    
+
     chrome.storage.local.get(['replacementText', 'replacementURL', 'replacementImageURL'], function (result) {
         console.log(result);
         document.getElementById("currentReplacementText").innerText = result.replacementText;
@@ -36,3 +37,13 @@ function updateStored(){
         document.getElementById("currentReplacementURL").innerText = result.replacementURL;
     });
 }
+
+document.getElementById("onCheck").addEventListener('click', function(){
+    var checkBox = document.getElementById("onCheck");
+    if (checkBox.checked == true) {
+        console.log("checkbox is ON");
+    } else {
+        console.log("checkbox is OFF");
+    }
+});
+    
