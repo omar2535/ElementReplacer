@@ -1,7 +1,7 @@
 document.getElementById('saveButton').addEventListener('click', save);
 
 $(document).ready(function(){
-
+    checkOnOff();
     updateStored();
 });
 
@@ -38,12 +38,36 @@ function updateStored(){
     });
 }
 
-document.getElementById("onCheck").addEventListener('click', function(){
+document.getElementById("onCheck").addEventListener('click', function () {
     var checkBox = document.getElementById("onCheck");
+    var text = document.getElementById("onText");
     if (checkBox.checked == true) {
         console.log("checkbox is ON");
+        document.getElementById("onText").innerText = "Extension is ON";
+        chrome.storage.local.set({"state": true}, function(){
+            console.log("State changed to true");
+        });
     } else {
         console.log("checkbox is OFF");
+        document.getElementById("onText").innerText = "Extension is OFF";
+        chrome.storage.local.set({
+            "state": false
+        }, function () {
+            console.log("State changed to false");
+        });
     }
 });
-    
+
+//Checks on/off state of chrome extension
+function checkOnOff(){
+    chrome.storage.local.get('state', function(result){
+        console.log(result);
+        if(result.state == true){
+            document.getElementById("onCheck").checked = true;
+            document.getElementById("onText").innerText = "Extension is ON";
+        }else{
+            document.getElementById("onCheck").checked = false;
+            document.getElementById("onText").innerText = "Extension is OFF";
+        }
+    });
+}
